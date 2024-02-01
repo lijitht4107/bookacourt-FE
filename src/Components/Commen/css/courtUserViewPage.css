@@ -1,0 +1,58 @@
+.court-page.book{
+    width: 10px;
+    height: 100vh;
+   
+}
+.court-page{
+    color: rgb(152, 70, 11);
+    position: absolute;
+    left: 46%;
+    top: 30%;
+    text-transform: capitalize;
+    text-align: center;
+    background-color:rgb(174, 220, 84);
+
+}
+.cort-book-iside-img{
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    left: 19%;
+    top: 30%;
+
+}
+.court-book-banner{
+    height: 100vh;
+}
+.select-date{
+    background-color: rgb(35, 36, 34);
+    width: 140px;
+    height: 40px;
+    border-radius:5px;
+   
+    
+}
+.select-date-area{
+    
+    background-color: rgb(35, 36, 34);
+    width: 140px;
+    height: 40px;
+    border-radius:5px;
+    color: white;
+}
+.booking-confirm{
+    
+    width: 300px;
+    height: 300px;
+    text-transform: capitalize;
+    text-align: center;
+}
+.table-court-edit-modal{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+.court-edit-modal{
+    width: 100%;
+}

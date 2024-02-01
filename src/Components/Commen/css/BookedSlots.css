@@ -1,0 +1,21 @@
+.booked-slots{
+    text-transform: capitalize;
+    color: white;
+    margin-top: 6rem;
+    height: 20rem;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(14, 16, 16);
+}
+.slots-image{
+    
+    height: 18rem;
+    width: 18rem ;
+    background-color: black;
+    flex: 50%;
+
+}
+.slot-details{
+    flex: 50%;
+}
