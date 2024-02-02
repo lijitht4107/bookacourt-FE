@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useState } from "react";
 import './css/Navbar.css'
 import {
   MDBContainer,
@@ -9,7 +9,7 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBBtn,
+  // MDBBtn,
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
@@ -18,9 +18,16 @@ import {
 } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// import AxiosInstance from "../../Config/AxiosInstants";
 
 function Navbar() {
   const { userDetails } = useSelector((state) => state.user);
+  // const [serarchResult,setSearchResult] =useState([]);
+  // const SearchArea = ()=>{
+  //   AxiosInstance.post('/user/search',{serarchResult}).then((res)=>{
+  //     debugger
+  //   }).catch(alert("empty") )
+  // }
   const navigate = useNavigate();
   const doLogout =()=>{
     localStorage.clear()
@@ -97,17 +104,20 @@ function Navbar() {
               </MDBNavbarItem>
             </MDBNavbarNav>
 
-            <div className="d-flex input-group w-auto">
+            {/* <div className="d-flex input-group w-auto">
               <input
                 type="search"
                 className="form-control"
                 placeholder="Type query"
                 aria-label="Search"
+                value={serarchResult}
+                onChange={(e)=>setSearchResult(e.target.value)}
               />
-              <MDBBtn color="primary">Search</MDBBtn>
-            </div>
+              <MDBBtn color="primary" onClick={SearchArea}>Search</MDBBtn>
+            </div> */}
 
-            <MDBNavbarItem>
+            <div className="">
+              
               <MDBDropdown>
                 <MDBDropdownToggle
                   className="nav nav-link  rounded "
@@ -129,7 +139,7 @@ function Navbar() {
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
-            </MDBNavbarItem>
+            </div>
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>

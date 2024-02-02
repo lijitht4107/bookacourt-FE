@@ -3,6 +3,7 @@ import Navbar from "../Components/Commen/Navbar";
 import AxiosInstance from "../Config/AxiosInstants";
 import Cards from "../Components/Commen/Cards";
 import { useNavigate } from "react-router-dom";
+import './css/Home.css'
 
 function Home() {
   const [courtData, setCourtData] = useState([]);
@@ -23,10 +24,10 @@ function Home() {
       });
   };
   return (
-    <>
+    < > 
       <Navbar />
 
-      <div className="container">
+      <div className="container home-bg">
         <div className="p-2 row gap-3 ">
           {courtData.map((court) => (
             <Cards court={court} />
