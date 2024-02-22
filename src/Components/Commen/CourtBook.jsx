@@ -67,7 +67,20 @@ export default function CourtBook() {
   
   const today = new Date().toString().slice(0,10)
   const tomorrow = (new Date().getDate()+1)+"-"+(new Date().getMonth()+1)+"-"+new Date().getFullYear();
-  
+  const handleToday=()=>{
+    const today =new Date().toDateString().split('T')[0]
+    setInputDate(today)
+    getTimeSlotData(new Date())
+  }
+  const handleTomorrow =()=>{
+    const tomorrow =new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    const tomorrowDate =tomorrow.toISOString().split('T')[0];
+    setInputDate(tomorrowDate);
+    getTimeSlotData(tomorrowDate)
+  }
+ 
+
   function loadScript(src) {
     return new Promise((resolve) => {
         const script = document.createElement("script");
@@ -183,8 +196,8 @@ export default function CourtBook() {
               <h2>{singleCourtData.courtName}</h2>
               <h6>{singleCourtData.location}</h6>
               <div className="d-flex">
-                <button className="mx-3 btn btn-light" onClick={()=>getTimeSlotData()}>{today}</button>
-                <button className="mx-3 btn btn-light" onClick={()=>getTimeSlotData(new Date({tomorrow}))}>{tomorrow}</button>
+                <button className="mx-3 btn btn-light" onClick={handleToday}>{today}</button>
+                <button className="mx-3 btn btn-light" onClick={handleTomorrow }>{tomorrow}</button>
                 <div className="select-date mx-3">
                   <input
                     type="date"

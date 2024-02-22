@@ -28,15 +28,16 @@ const handleLogin =()=>{
           localStorage.setItem("user",JSON.stringify(parsedToken))
           //dispatch(setUserDetails(parsedToken))
           dispatch(setUserDetails(parsedToken))
-          toastSuccess("login successfull")
+          toastSuccess('login successfull')
           navigate("/home")
         }
      })
 
     }else{
-      toastError("credintials not filled")
+      toastError('login faild')
     }
   } catch (error) {
+    toastError('user not found')
     console.log(error)
   }
 }
