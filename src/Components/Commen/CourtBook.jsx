@@ -13,7 +13,6 @@ import Modal from "../Modal";
 import { toastSuccess } from "../../Constants/Plugins";
 import { ModalArea } from "../../Constants/modalView";
 import { useSelector } from "react-redux";
-import EditCourtDetails from "./EditCourtDetails";
 
 export default function CourtBook() {
   const { id } = useParams();
@@ -61,7 +60,7 @@ export default function CourtBook() {
       })
       .catch((err) => {
         console.log(err);
-        debugger;
+       
       });
   };
   
