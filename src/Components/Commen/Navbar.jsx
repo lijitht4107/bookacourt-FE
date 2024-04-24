@@ -58,7 +58,7 @@ function Navbar() {
                   className="nav"
                   active
                   aria-current="page"
-                  href="/home"
+                  onClick={()=>navigate('/home')}
                 >
                   Home
                 </MDBNavbarLink>
@@ -69,7 +69,7 @@ function Navbar() {
                     className="nav"
                     active
                     aria-current="page"
-                    href="/addNewcourt"
+                    onClick={()=>navigate("/addNewcourt")}
                   >
                     Add Court
                   </MDBNavbarLink>
@@ -100,7 +100,7 @@ function Navbar() {
               </MDBNavbarItem>
 
               <MDBNavbarItem>
-                <MDBNavbarLink href="/Mybookings">My bookings</MDBNavbarLink>
+                <MDBNavbarLink onClick={()=>navigate("/Mybookings")}>My bookings</MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
 
@@ -128,7 +128,7 @@ function Navbar() {
                   {userDetails.lname}
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link className="nav" href="/Mybookings">
+                  <MDBDropdownItem link className="nav" onClick={()=>navigate("/Mybookings")} >
                     My Bookings
                   </MDBDropdownItem>
                   <MDBDropdownItem link className="nav">
