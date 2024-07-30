@@ -1,67 +1,69 @@
 import { MDBInput, MDBIcon } from "mdb-react-ui-kit";
 import AxiosInstance from "../Config/AxiosInstants";
 import React, { useState } from "react";
-
 import { toastError, toastSuccess } from "../Constants/Plugins";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUserDetails} from "../Toolkit/UserSlice";
-
+import { setUserDetails } from "../Toolkit/UserSlice";
 
 function LoginBox({ setBoxName }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
-  const navigate = useNavigate()
-
-  const dispatch=useDispatch()
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignUp = () => {
     setBoxName("signup");
   };
-const handleLogin =()=>{
-  try {
-  if(email&&password){
-    AxiosInstance.post('/auth/login',{email,password} ).then((res)=>{
-        if(res.data.message==="login successfull"&&res.data.token){
-          localStorage.setItem("token",res.data.token)
-          const parsedToken=parseJwt(res.data.token)
-          localStorage.setItem("user",JSON.stringify(parsedToken))
-          //dispatch(setUserDetails(parsedToken))
-          dispatch(setUserDetails(parsedToken))
-          toastSuccess('login successfull')
-          navigate("/home")
-        }
-     })
 
-    }else{
-      toastError('login faild')
+  const handleLogin = async () => {
+    if (!email || !password) {
+      toastError("Please fill in both fields");
+      return;
     }
-  } catch (error) {
-    toastError('user not found')
-    console.log(error)
-  }
-}
 
+    try {
+      const response = await AxiosInstance.post("/auth/login", { email, password });
+      const { message, token } = response.data;
+
+      if (message === "login successfull" && token) {
+        localStorage.setItem("token", token);
+        const parsedToken = parseJwt(token);
+        localStorage.setItem("user", JSON.stringify(parsedToken));
+        dispatch(setUserDetails(parsedToken));
+        toastSuccess("Login successful");
+        navigate("/home");
+      } else {
+        toastError("Login failed");
+      }
+    } catch (error) {
+      if (error.code === 'ERR_NETWORK') {
+        toastError("Network error: Unable to reach the backend service");
+      } else {
+        toastError("An error occurred during login");
+      }
+      console.error(error);
+    }
+  };
 
   // parseJwt function for decoding backend user token details
   function parseJwt(token) {
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
       window
         .atob(base64)
         .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
+        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
         .join("")
     );
 
     return JSON.parse(jsonPayload);
   }
+
   return (
     <>
-     <div className="d-flex flex-row align-items-center mb-4 pt-5">
+      <div className="d-flex flex-row align-items-center mb-4 pt-5">
         <MDBIcon />
         <MDBInput
           label="Your Email"
@@ -87,10 +89,8 @@ const handleLogin =()=>{
       <p className="text-center mb-5 mx-1 mx-md-4 mt-4" onClick={handleSignUp}>
         Sign up:
       </p>
-   
-    
     </>
-  )
+  );
 }
 
-export default LoginBox
+export default LoginBox;
